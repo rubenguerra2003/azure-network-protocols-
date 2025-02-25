@@ -35,16 +35,20 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
   First, let's create our Resource Group inside our Azure subscription.
 </p>
 <p>
-  <img src="https://i.imgur.com/dOAeXqs.png" height="75%" width="100%" alt="Resource Group"/>
+  
+ ![making RG](https://github.com/user-attachments/assets/ec05874d-6007-4ff4-abd2-c0cbdb8389b9)
+
 </p>
 <p>
-  Now create your Windows virtual machine. I typically create the VM in (US) East US.
+  Now create your Windows virtual machine. I typically create the VM in (US) US West 2.
 </p>
 <p>
   While creating the VM, select the previously created Resource Group and allow it to create a new Virtual Network (Vnet) and Subnet. Make sure to use the password option under the <strong>Administrator Account</strong> section:
 </p>
 <p>
-  <img src="https://i.imgur.com/PHOwjLh.png" height="75%" width="100%" alt="Windows VM"/>
+  
+![making windows vm](https://github.com/user-attachments/assets/0bc45ffb-7d9a-41c4-8e42-ba1ebed5085a)
+
 </p>
 <p>
   Create an Ubuntu virtual machine.
@@ -53,13 +57,17 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
   While creating the VM, select the previously created Resource Group and allow it to create a new Virtual Network (Vnet) and Subnet. Make sure to use the password option under the <strong>Administrator Account</strong> section (not seen in image):
 </p>
 <p>
-  <img src="https://i.imgur.com/N5zwQUH.png" height="75%" width="100%" alt="Ubuntu VM"/>
+  
+![making linux vm](https://github.com/user-attachments/assets/fe0e7766-4456-409b-a483-985d47ec7184)
+
 </p>
 <p>
   Observe Your Virtual Network within Network Watcher:
 </p>
 <p>
-  <img src="https://i.imgur.com/Pn02GXF.png" height="75%" width="100%" alt="Network Watcher"/>
+  
+![same network](https://github.com/user-attachments/assets/ba4f9181-36a5-418a-8553-3ccb61ce792e)
+
 </p>
 <br />
 <br />
@@ -71,39 +79,53 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
   Remote into your Windows 10 Virtual Machine, install Wireshark, open it and filter for ICMP traffic only.
 </p>
 <p>
-  <img src="https://i.imgur.com/0BsfNiS.jpg" height="75%" width="100%" alt="Microsoft Remote Desktop - Mac"/>
+  
+  ![log into windows vm](https://github.com/user-attachments/assets/3da911ed-256e-4167-b484-e3972e6492de)
+  ![download wireshark](https://github.com/user-attachments/assets/96715f8a-514c-4614-aa05-dfa3f8443fc3)
+
 </p>
 <p>
   Retrieve the private IP address of the Ubuntu VM and attempt to ping it from within the Windows 10 VM. Observe ping requests and replies within WireShark:
 </p>
 <p>
-  <img src="https://i.imgur.com/yYGKuAy.png" height="75%" width="100%" alt="Ubuntu private IP"/>
-  <img src="https://i.imgur.com/3h9QSEY.png" height="75%" width="100%" alt="ICMP traffic - private IP"/>
+  
+ ![use linux private ip](https://github.com/user-attachments/assets/39a59402-96fa-4e5f-98b9-fae3008efce4)
+![ping linux](https://github.com/user-attachments/assets/c105f5d9-ce4c-418a-a1a1-b709a28dd77e)
+
 </p>
 <p>
   Attempt to ping a public website (such as www.google.com) and observe the traffic in WireShark:
 </p>
 <p>
-  <img src="https://i.imgur.com/YduMvc7.png" height="75%" width="100%" alt="ICMP traffic - public IP"/>
+  
+![ping google](https://github.com/user-attachments/assets/d7695aa7-c2c7-4c4b-b596-b66cbc6e6305)
+
 </p>
 <p>
   Initiate a perpetual/non-stop ping from your Windows 10 VM to your Ubuntu VM:
 </p>
 <p>
-  <img src="https://i.imgur.com/bihftKK.png" height="75%" width="100%" alt="ICMP traffic - perpetual ping"/>
+  
+![ping indefinetly linux](https://github.com/user-attachments/assets/90c49572-6217-45cf-b8cc-87734699bbbd)
+
 </p>
 <p>
   Open the Network Security Group your Ubuntu VM is using and disable incoming (inbound) ICMP traffic, while back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity:
 </p>
 <p>
-  <img src="https://i.imgur.com/ovGk5dq.png" height="75%" width="100%" alt="ICMP traffic - perpetual ping"/>
-  <img src="https://i.imgur.com/NjuUANI.png" height="75%" width="100%" alt="ICMP traffic - ICMP denied"/>
+  
+  ![deny icmp on linux](https://github.com/user-attachments/assets/3f25f91e-c67c-4c19-a0d9-d05e1e3893be)
+![observe icmp time out](https://github.com/user-attachments/assets/a96143c2-2174-40d8-bba6-9e1b1fa29fa3)
+
 </p>
 <p>
   Re-enable ICMP traffic for the Network Security Group in your Ubuntu VM and back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line ping activity (should start working again).Finally, stop the ping activity:
 </p>
 <p>
-  <img src="https://i.imgur.com/nZbl2sA.png" height="75%" width="100%" alt="ICMP traffic - ICMP re-enabled"/>
+  
+  ![allow icmp traffic](https://github.com/user-attachments/assets/316dc3a7-0600-4f6a-85be-730768c46b75)
+![observe icmp after allowing traffic again](https://github.com/user-attachments/assets/ac8ca428-7cde-4c34-ae1a-9da210682a76)
+
 </p>
 <br />
 <br />
@@ -115,9 +137,11 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
   Back in Wireshark, filter for SSH traffic only and from your Windows 10 VM, “SSH into” your Ubuntu virtual machine (via its private IP address). Type commands (ls, pwd, etc) into the linux SSH connection and observe SSH traffic spam in WireShark.
 </p>
 </p>
-  Exit the SSH connection by typing ‘exit’ and pressing [return]:
+
+![ssh traffic](https://github.com/user-attachments/assets/e6d05d6c-4e49-44a4-bacb-2487573aeecb)
+
+ Exit the SSH connection by typing ‘exit’ and pressing [return]:
 </p>
-  <img src="https://i.imgur.com/6YEDJKu.png" height="75%" width="100%" alt="SSH traffic"/>
 <p>
 <br />
 <br />
@@ -131,7 +155,9 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 Observe the DHCP traffic appearing in WireShark:
 </p>
 <p>
-  <img src="https://i.imgur.com/mKyAHFr.png" height="75%" width="100%" alt="DHCP traffic"/>
+  
+![dhcp ip renew](https://github.com/user-attachments/assets/0a61d5f8-d872-4d6d-8ddd-2c023a212bfe)
+
 </p>
 <br />
 <br />
@@ -146,7 +172,9 @@ Observe the DHCP traffic appearing in WireShark:
   From your Windows 10 VM within a command line, use nslookup to see what google.com and disney.com’s IP addresses are and observe the DNS traffic being shown in WireShark:
 </p>
 <p>
-  <img src="https://i.imgur.com/mYZ8CAK.png" height="75%" width="100%" alt="DNS traffic"/>
+  
+ ![nslookup](https://github.com/user-attachments/assets/01f54adb-c32a-4b37-be89-b91cbace131f)
+
 </p>
 <br />
 <br />
@@ -164,7 +192,9 @@ Observe the DHCP traffic appearing in WireShark:
   The answer is because the RDP (protocol) is constantly showing you a live stream from one computer to another, therefor traffic is always being transmitted:
 </p>
 <p>
-  <img src="https://i.imgur.com/hNlhTVp.png" height="75%" width="100%" alt="RDP traffic"/>
+  
+ ![rdp](https://github.com/user-attachments/assets/d899243b-eba5-4f6f-88f9-4ce8040a3183)
+
 </p>
 <p>
   Now that we're finished observing the network, DON'T FORGET TO CLEAN UP YOUR AZURE ENVIRONMENT! This will prevent you from incurring additional charges and you won't be left surprised!
