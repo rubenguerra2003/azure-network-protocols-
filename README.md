@@ -62,7 +62,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 <p>
-  Observe Your Virtual Networks Topoglogy:
+  Observe Your Virtual Networks Topoglogy to insure you're on the same virtual network:
 </p>
 <p>
   
